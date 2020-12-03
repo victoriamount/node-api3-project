@@ -1,12 +1,20 @@
 const express = require('express');
-
+const cors = require('cors')
+const path = require('path')
 const usersRouter = require('./users/userRouter')
 const postsRouter = require('./posts/postRouter')
-
 const server = express();
 
 
+console.log('hi Sterling!')
+console.log(__dirname)
+console.log(process.env.USER)
+console.log(process.env.PORT)
+console.log(process.env.STERLING)
+
 server.use(express.json())
+server.use(cors())
+server.use(express.static(path.join(__dirname, 'client/build')))
 server.use('/api/users', logger, usersRouter)
 server.use('/api/posts', logger, postsRouter)
 
